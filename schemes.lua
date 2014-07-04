@@ -14,7 +14,7 @@ local language_Punctuation =  'punctuation.definition.string, punctuation.defini
 schemes.one = {
    general = {
       {name='invisibles',                      color='#223439'},
-      {name='background',                      color='#223439'},
+      {name='background',                      color='#354B50'},
       {name='gutterForeground',                color='#677E82'},
       {name='foreground',                      color='#677E82'},
       {name='caret',                           color='#839496'},
