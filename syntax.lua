@@ -8,17 +8,27 @@
 local syntax = {}
 
 syntax.lua = {
+   --'User defined'
    user = {
       constant = {
          key = 'constant',
          exemples = {'1,2,3,4,5',}
       },
    }
+
+
+--'fixed words'
  language = {
    fonction = {
-      key = 'support.function',
-      exemples = { 'io.open', 'table.insert', 'string.len', 'string.find'}
-   },
+      support = {
+         key = 'support.function',
+         exemples = { 'io.open', 'table.insert', 'string.len', 'string.find'}
+      },
+      os = {
+         key = 'support.function',
+         exemples = { 'io.open', 'table.insert', 'string.len', 'string.find'}
+      },
+   }
    keyword = {
       control = {
          key = 'keyword.control',
