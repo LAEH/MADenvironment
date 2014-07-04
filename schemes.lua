@@ -3,6 +3,25 @@
 local schemes = {}
 local language_Punctuation =  'punctuation.definition.string, punctuation.definition.variable, punctuation.definition.string, punctuation.definition.parameters, punctuation.definition.string, punctuation.definition.array'
 
+local base03 = '#002b36'
+local white = '#ffffff'
+local base02 = '#073642'
+local base01 = '#586e75'
+local base00 = '#657b83'
+local base0 = '#839496'
+local base1 = '#93a1a1'
+local base2 = '#eee8d5'
+local base3 = '#fdf6e3'
+
+local yellow   = '#b58900'
+local orange   = '#cb4b16'
+local red      = '#dc322f'
+local pink     = '#d33682'
+local violet   = '#6c71c4'
+local blue     = '#268bd2'
+local cyan     = '#2aa198'
+local green    = '#859900'
+
 --●●●●●●●●●●●●●●●
 --●             ●
 --●             ●
@@ -15,36 +34,37 @@ schemes.one = {
    general = {
       {name='invisibles',                      color='#223439'},
       {name='background',                      color='#354B50'},
-      {name='gutterForeground',                color='#677E82'},
+      {name='lineHighlight',                   color='#2a3f45'},
+      {name='gutterForeground',                color='#2a3f45'},
       {name='foreground',                      color='#677E82'},
+      {name='selection',                       color='#597175'},
+      {name='selectionBorder',                 color='#2a3f45'},
+      {name='selectionForeground',             color='#2a3f45'},
       {name='caret',                           color='#839496'},
       {name='brackets',                        color='#839496'},
-      {name='guide',                           color='#839496'},
-      {name='activeGuide',                     color='#839496'},
-      {name='selection',                       color='#839496'},
-      {name='selectionBorder',                 color='#839496'},
-      {name='selectionForeground',             color='#839496'},
+      {name='guide',                           color='#2a3f45'},
+      {name='activeGuide',                     color='#3e757f'},
+
       {name='inactiveSelection',               color='#839496'},
       {name='inactiveSelectionForeground',     color='#839496'},
-      {name='lineHighlight',                   color='#354C4F'},
-      {name='findHighlight',                   color='#354C4F'},
-      {name='findHighlightForeground',         color='#002024'},
+      {name='findHighlight',                   color= pink},
+      {name='findHighlightForeground',         color= white},
    },
    lua = {
-      {name = 'comment',                        color='#0F2329'},--  '--●●●●',
-      {name = 'constant',                       color='#994155'},-- '2,3,4',
-      {name = 'keyword.operator',               color='#000024'},-- '==, =, >',
-      {name = 'keyword.control',                color='#85bb00'},-- 'functionreturn,in, do',
-      {name = 'constant.language',              color='#815548'},-- 'true, false',
-      {name = 'support.function',               color='#ffffff'},-- 'io.open, table.insert',
-      {name = 'variable',                       color='#147B8A'},-- 'x, color1',
-      {name = 'entity.name.function',           color='#fc625b'},-- 'fun.grid(opt)',
-      {name = 'variable.parameter',             color='#045EAB'},-- 'function, local, in, do',
-      -- {name = 'text source',                    color='#1bb188'},--
-      {name = 'string',                         color='#00AC6C',background='#1D3034'},-- 'strings, key quotes',
-      {name = 'comment.block',                   color='#00AC6C'},
-      {name = language_Punctuation,             color='#0000000'},-- 'strings, key strings, quotes',
+      { name= 'comment',                        color='#0F2329'},-- '--●●●●',
+      { name= 'constant',                       color='#994155'},-- '2,3,4',
+      { name= 'keyword.operator',               color='#000024'},-- '==, =, >',
+      { name= 'keyword.control',                color='#0F2329'},-- 'functionreturn,in, do',
+      { name= 'constant.language',              color='#815548'},-- 'true, false',
+      { name= 'support.function',               color='#ffffff'},-- 'io.open, table.insert',
+      { name= 'variable',                       color='#147B8A'},-- 'x, color1',
+      { name= 'entity.name.function',           color='#268bd2'},-- 'fun.grid(opt)',
+      { name= 'variable.parameter',             color='#045EAB'},-- 'function, local, in, do',
+      { name= 'string',                         color='#26a497'},--background='#2a3f45'},-- 'strings, key quotes',
+      { name= 'comment.block',                  color='#00AC6C'},
+      { name= 'punctuation',                    color='#0000000'},-- 'strings, key strings, quotes',
    },
+
    markdown = {
       {
          prettyName = 'Markdown punctuation',
@@ -85,70 +105,6 @@ schemes.one = {
 }
 
 
---●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
---●                                 ●
---●           Environment           ●
---●                                 ●
---●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
-
-local syntax = {
-   language = {
-      fonction = {
-         'io.open',
-         'table.insert',
-         'string.len',
-         'string.find'
-
-      },
-      keyword = {
-         control = {
-            'local',
-            'do',
-            'if',
-            'then',
-            'else',
-            'elseif',
-            'end',
-            'for',
-            'function',
-            'in',
-            'repeat',
-            'return',
-            'until',
-            'while',
-            'break',
-         },
-         operator ={
-            logical = {
-               'and',
-               'or',
-               'and',
-               'not',
-            },
-            arythmetic = {
-               '+',
-               '-',
-               '*',
-               '/',
-               '-',
-            },
-            reltionnal ={
-               '<',
-               '>',
-               '<=',
-               '>=',
-               '==',
-               '~=',
-            },
-            booleans = {
-               'true',
-               'false',
-               'nil',
-            }
-         }
-      }
-   }
-}
 return schemes
 
 

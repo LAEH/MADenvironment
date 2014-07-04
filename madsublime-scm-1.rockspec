@@ -23,6 +23,7 @@ build = {
    modules = {
       ['MADsublime.init'] = 'init.lua',
       ['MADsublime.schemes'] = 'schemes.lua',
+      ['MADsublime.schemes'] = 'syntax.lua',
       ['MADsublime.preferences'] = 'preferences.lua',
    }
 }
