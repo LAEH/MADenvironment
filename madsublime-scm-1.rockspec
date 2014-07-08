@@ -1,18 +1,18 @@
-package = "MADsublime"
+package = "madmadenvironment"
 version = "scm-1"
 
 source = {
-   url = "git://github.com/LAEH/MADsublime",
+   url = "git://github.com/laeh/madmadenvironment",
    branch = "master"
 }
 
 description = {
-   summary = "MADsublime",
+   summary = "madmadenvironment",
    detailed = [[
-      Sublime Text Developement Context
+      Software Development Environment
    ]],
-   homepage = "https://github.com/LAEH/MADsublime",
-   license = "BSD"
+   homepage = "https://github.com/laeh/madmadenvironment",
+   license = "bsd"
 }
 
 dependencies = {
@@ -21,9 +21,9 @@ dependencies = {
 build = {
    type = "builtin",
    modules = {
-      ['MADsublime.init'] = 'init.lua',
-      ['MADsublime.schemes'] = 'schemes.lua',
-      ['MADsublime.schemes'] = 'syntax.lua',
-      ['MADsublime.preferences'] = 'preferences.lua',
+      ['madmadenvironment.init'] = 'init.lua',
+      ['madmadenvironment.schemes'] = 'schemes.lua',
+      ['madmadenvironment.schemes'] = 'syntax.lua',
+      ['madmadenvironment.preferences'] = 'preferences.lua',
    }
 }

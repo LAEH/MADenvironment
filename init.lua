@@ -84,6 +84,11 @@ local xmlDoc = [[
 		</dict>
 	</plist>
 ]]
+print(xmlDoc)
+
+--●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
+--=============================================================================
+
 local schemeDirectory = "/Users/LA/Library/Application Support/Sublime Text 3/Packages/MAD/"
 local schemeName = 'theMADtheme'..os.time()..'.tmTheme'
 local schemeFile = schemeDirectory..'/'..schemeName

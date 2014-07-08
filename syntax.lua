@@ -4,7 +4,6 @@
 --●                                 ●
 --●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
 
-
 local syntax = {}
 
 syntax.lua = {
@@ -75,4 +74,6 @@ syntax.lua = {
    }
 }
 
-}
+
+-- dir.getdirectories
+-- dir.getfiles
