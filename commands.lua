@@ -1,5 +1,6 @@
 
 
+
 ctrl + R
 
 luarocks install gfx.js
@@ -35,3 +36,23 @@ luarocks make
 info = gm.info('some.jpeg')
 
 
+i94
+Passport
+
+
+scp -r TX.uniform clement@stanton.madbits.com:/data/rsync/TO/
+4r4b1c4
+
+https://github.com/madbits/pixels/blob/master/init.lua#L395
+pixels.load() accepte des URLs
+http://www.lua.org/manual/5.1/
+min=math.huge
+for _,let in ipairs(array) do min = math.min(min,let) end
+print(s) == io.write(tostring(s) .. ‘\n’)
+http://git-scm.com/docs/gittutorial
+https://www.atlassian.com/git/tutorial/git-branches
+https://www.atlassian.com/git/tutorial/git-basics
+git log —graph
+http://en.wikipedia.org/wiki/Receiver_operating_characteristic
+http://luajit.org/extensions.html
+https://github.com/madbits/xtraining/blob/master/pipeline/example1.lua

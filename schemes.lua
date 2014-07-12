@@ -64,6 +64,59 @@ schemes.one = {
       { name= 'comment.block',                  color='#00AC6C'},
       { name= 'punctuation',                    color='#0000000'},-- 'strings, key strings, quotes',
    },
+   css = {
+         prettyName = 'CSS Selector - Tag',
+         selector = 'entity.name.tag.css'
+      },
+      {
+         prettyName = 'CSS Selector - Id',
+         selector = 'source.css entity.other.attribute-name.id'
+      },
+      {
+         prettyName = 'CSS Selector - Class',
+         selector = 'entity.other.attribute-name.class'
+      },
+      {
+         prettyName = 'CSS Pseudo Class',
+         selector = 'entity.other.attribute-name.pseudo-element, entity.other.attribute-name.pseudo-class'
+      },
+      {
+         prettyName = 'CSS Property Name',
+         selector = 'support.type.property-name'
+      },
+      {
+         prettyName = 'CSS Property Value',
+         selector = 'support.constant.property-value'
+      },
+      {
+         prettyName = 'CSS Color',
+         selector = 'constant.other.color.rgb-value'
+      },
+      {
+         prettyName = 'CSS Unit',
+         selector = 'keyword.other.unit.css'
+      },
+      {
+         prettyName = 'CSS Font Name',
+         selector = 'support.constant.font-name'
+      },
+      {
+         prettyName = 'CSS Curly Brackets',
+         selector = 'punctuation.section.property-list.css'
+      },
+      {
+         prettyName = 'CSS Round Brackets',
+         selector = 'punctuation.section.function.css'
+      },
+      {
+         prettyName = 'CSS url() / rgba() / hsla',
+         selector = 'support.function.misc.css'
+      },
+      {
+         prettyName = 'CSS Parameter',
+         selector = 'variable.parameter.misc.css',
+      }
+   },
 
    markdown = {
       {
@@ -103,7 +156,6 @@ schemes.one = {
       }
    }
 }
-
 
 return schemes
 
