@@ -47,21 +47,13 @@ scheme.general = {
 }
 
 scheme.language.lua = {
-   --┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-   --┃         COMMENTS & STRINGS ┃
-   --┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+   -- QUOTES
    {
+      selector = 'string.quoted.single',
       name = 'LUA block string', -- [[string]]
       color = colors.pink.front,
       back = colors.pink.back,
       style='bold italic',
-      selector = 'string.quoted.single',
-   },
-   {
-      name = 'LUA user strings',
-      style = 'bold',
-      color = colors.green.front,
-      selector= 'constant.character, string',
    },
    {
       selector = 'string.quoted.double',
@@ -70,6 +62,13 @@ scheme.language.lua = {
       back     = base,
       style    ='bold italic',
    },
+   {
+      selector= 'constant.character, string',
+      name = 'LUA block quote',
+      color = colors.green.front,
+      style = 'bold',
+   },
+   -- COMMENTS
    {
       name = 'LUA comment', -- this is a comment
       color = '#000',
@@ -82,16 +81,12 @@ scheme.language.lua = {
       style='bold italic',
       selector = 'comment.block',
    },
-
-   --┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-   --┃ LANGUAGE KEYWORDS & CONSTANTS ┃
-   --┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+   --LANGUAGE KEYWORDS & CONSTANTS
    {
       name  = 'LUA support functions',-- 'io. table. os. math. .file'
       style = 'italic',
       color = colors.blue.front,
       selector = 'support.function',
-
    },
    {
       name = 'LUA controls keyword', -- 'local' 'function' 'for' 'if'
@@ -100,13 +95,6 @@ scheme.language.lua = {
       style = 'bold',
       selector = 'keyword.control',
    },
-   {
-      name = 'LUA user function name',-- 'MADweb.' 'MADcolors. '
-      style = 'italic bold',
-      color = colors.violet.front,
-      selector = 'entity.name.function',
-   },
-
    {
       name = 'LUA arythmetic signs',--'==, =, >'
       back = colors.violet.back,
@@ -123,6 +111,18 @@ scheme.language.lua = {
    --┃                  USER DEFINED ┃
    --┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
    {
+      name = 'LUA user function name',-- 'MADweb.' 'MADcolors. '
+      style = 'italic bold',
+      color = colors.violet.front,
+      selector = 'entity.name.function',
+   },
+   {
+   {
+      name = 'LUA user function arguments',--'opt'
+      color = colors.green.front,
+      back = colors.green.back,
+      selector  = 'variable.parameter',
+   },
       name = 'LUA numbers',--'2,3,4'
       color = '#000000',
       style = 'bold',
@@ -135,14 +135,9 @@ scheme.language.lua = {
       selector = 'variable',
    },
    {
-      name = 'LUA user function arguments',--'opt'
-      color = colors.green.front,
-      back = colors.green.back,
-      selector  = 'variable.parameter',
-   },
-   {
       name = 'LUA user strings',--strings, key strings, quotes'
       color='#444',
+      color = colors.red.front,
       selector= 'punctuation',
    }
 }
