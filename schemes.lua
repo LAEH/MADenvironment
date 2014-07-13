@@ -1,30 +1,29 @@
 #!/usr/bin/env th
 
 --┏━━━━━━━━━━━━━━┓
---┃                          ┃
---┃                   COLORS ┃
---┃                          ┃
+--┃              ┃
+--┃              ┃
+--┃              ┃
+--┃              ┃
 --┗━━━━━━━━━━━━━━┛
 
+-- COLORS
+local base = '#eeeeee'
 local colors = {
-   violet       = { front='#6a71e5', back ='#f0f1fd'},
-   blue         = { front='#2f87fb', back ='#eaf3ff'},
-   cyan         = { front='#35b8e5', back ='#ebf8fd'},
-   lightblue    = { front='#65d0fc', back ='#f0fbff'},
-   green        = { front='#23cd4a', back ='#edfcf0'},
-   pink         = { front='#ff4966', back ='#ffedf0'},
+   violet       = { front='#530ff5', back ='#e3f9fd'},
+   cyan         = { front='#2cbae7', back ='#cbebf5'},
+   green        = { front='#65b11a', back ='#f0f7ee'},
+   pink         = { front='#fe2973', back ='#fcf1f4'},
+   orange       = { front='#ffa502', back ='#fff6e6'},
    red          = { front='#ff5533', back ='#ffeeeb'},
-   orange       = { front='#ffa503', back ='#fff6e6'},
    yellow       = { front='#ffd201', back ='#fffbe6'},
    grey         = { front='#9fa0a4', back ='#f6f6f6'},
    black        = { front='#9fa0a4', back ='#f6f6f6'},
+   lightblue    = { front='#65d0fc', back ='#f0fbff'},
+   blue         = { front='#2f87fb', back ='#eaf3ff'},
 }
 
---┏━━━━━━━━━━━━━━┓
---┃                          ┃
---┃                   SCOPES ┃
---┃                          ┃
---┗━━━━━━━━━━━━━━┛
+-- SCHE TABLE BUILDING
 
 scheme = {
    general = {},
@@ -32,211 +31,202 @@ scheme = {
 }
 
 scheme.general = {
-   {
-      selector = 'invisibles',
-      color = '#E0E0E0'
-   },
-   {
-      selector = 'background',
-      color = '#eeeeee'
-   },
-   {
-      selector = 'lineHighlight',
-      color = '#ffffff'
-   },
-   {
-      selector = 'gutterForeground',
-      color = '#333333'
-   },
-   {
-      selector = 'foreground',
-      color = '#222222'
-   },
-   {
-      selector = 'selection',
-      color = '#fdbece'
-   },
-   {
-      selector = 'selectionBorder',
-      color = '#000000'
-   },
-   {
-      selector = 'caret',
-      color = '#000000'
-   },
-   {
-      selector = 'brackets',
-      color = '#839496'
-   },
-   {
-      selector = 'guide',
-      color = '#dddddd'
-   },
-   {
-      selector = 'activeGuide',
-      color = '#ffffff'
-   },
-   {
-      selector = 'inactiveSelection',
-      color = '#cffff9'
-   },
-   {
-      selector = 'findHighlight',
-      color = '#FFE792'
-   },
+   { selector = "background",        color =  base},
+   { selector = 'invisibles',        color = '#E0E0E0'},
+   { selector = 'lineHighlight',     color = '#ffffff'},
+   { selector = 'gutterForeground',  color = '#bbbee1'},
+   { selector = 'foreground',        color = '#222222'},
+   { selector = 'selection',         color = '#ffffff'},
+   { selector = 'selectionBorder',   color = '#000000'},
+   { selector = 'caret',             color = '#000000'},
+   { selector = 'brackets',          color = '#839496'},
+   { selector = 'guide',             color = '#dddddd'},
+   { selector = 'activeGuide',       color = '#ffffff'},
+   { selector = 'inactiveSelection', color = '#61E880'},
+   { selector = 'findHighlight',     color = '#FFE792'},
 }
 
 scheme.language.lua = {
+   --┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+   --┃         COMMENTS & STRINGS ┃
+   --┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
    {
-      name = 'LUA comments', -- comment
+      name = 'LUA block string', -- [[string]]
+      color = colors.pink.front,
+      back = colors.pink.back,
+      style='bold italic',
+      selector = 'string.quoted.single',
+   },
+   {
+      name = 'LUA comment', -- this is a comment
+      color = '#000',
+      style='bold italic',
       selector = 'comment, comment punctuation',
+   },
+   {
+      name = 'LUA comments block', -- [[string]]
+      color = colors.pink.front,
+      -- back = colors.pink.back,
+      style='bold italic',
+      selector = 'comment.block',
+   },
+   {
+      name = 'LUA string "', -- [[string]]
       color ='#000000',
-      style='bold italic'
+      back =base,
+      style='bold italic',
+      selector = 'string.quoted.double',
    },
+
+   --┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+   --┃ LANGUAGE KEYWORDS & CONSTANTS ┃
+   --┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
    {
-      name = 'LUA numbers',--'2,3,4'
-      selector = 'constant',
-      color = '#000000',
-      style = 'bold',
-      background = '#ffffff',
-   },
-   {
-      name = 'LUA arythmetic signs',--'==, =, >'
-      selector  = 'keyword.operator',
-      background = colors.blue.back,
-      color = colors.blue.front,
-   },
-   {
-      name = 'LUA controls keyword',--'function return,in, do'
-      selector = 'keyword.control',
-      background = colors.green.back,
-      color = colors.green.front,
-   },
-   {
-      name = 'LUA constants',--'true, false'
-      selector = 'constant.language',
-      background = colors.cyan.back,
-      color = colors.cyan.front,
-      style = 'bold',
-   },
-   {
-      name = 'LUA support functions',--'io.open, table.insert'
-      selector = 'support.function',
+      name  = 'LUA support functions',-- 'io. table. os. math. .file'
       style = 'italic',
-      background = colors.blue.back,
       color = colors.blue.front,
+      selector = 'support.function',
 
    },
    {
-      name = 'LUA user variables',--'x, color1'
-      selector = 'variable',
-      color='#147B8A',
+      name = 'LUA controls keyword', -- 'local' 'function' 'for' 'if'
+      back = colors.orange.back,
+      color = colors.orange.front,
+      style = 'bold',
+      selector = 'keyword.control',
    },
    {
-      name = 'LUA user function name',--'fun.grid(opt)'
-      selector = 'entity.name.function',
-      style = 'italic',
-      background = colors.violet.back,
+      name = 'LUA user function name',-- 'MADweb.' 'MADcolors. '
+      style = 'italic bold',
       color = colors.violet.front,
+      selector = 'entity.name.function',
+   },
+
+   {
+      name = 'LUA arythmetic signs',--'==, =, >'
+      back = colors.violet.back,
+      color = colors.violet.front,
+      selector  = 'keyword.operator',
+   },
+   {
+      name = 'LUA constants',--'true, false'
+      color = colors.red.front,
+      style = 'bold',
+      selector = 'constant.language',
+   },
+   --┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+   --┃                  USER DEFINED ┃
+   --┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+   {
+      name = 'LUA numbers',--'2,3,4'
+      color = '#000000',
+      style = 'bold',
+      color = colors.red.front,
+      selector = 'constant',
+   },
+   {
+      name= 'LUA user variables',--'x, color1'
+      color='#147B8A',
+      selector = 'variable',
    },
    {
       name = 'LUA user function arguments',--'opt'
+      color = colors.green.front,
+      back = colors.green.back,
       selector  = 'variable.parameter',
-      background = colors.red.back,
-      color = colors.red.front,
    },
    {
       name = 'LUA user strings',
-      selector= 'constant.character, string',
-      background = colors.pink.back,
+      style = 'bold',
       color = colors.pink.front,
+      selector= 'constant.character, string',
    },
-   -- {
-   --    name = 'LUA user strings',--strings, key strings, quotes'
-   --    selector= 'punctuation',
-   --    color='#444',
-   -- }
+   {
+      name = 'LUA user strings',--strings, key strings, quotes'
+      color='#444',
+      selector= 'punctuation',
+   }
 }
 
 -- scheme.language.css = {
 --    {
 --       name = 'CSS Selector - Tag',
 --       selector = 'entity.name.tag.css',
---       background = colors.pink.back,
+--       back = colors.pink.back,
 --       color = colors.pink.front,
 --       style = 'bold',
 --    },
 --    {
 --       name = 'CSS Selector - Id',
 --       selector = 'source.css entity.other.attribute-name.id'
---       background = colors.pink.back,
+--       back = colors.pink.back,
 --       color = colors.pink.front,
 --       style = 'bold',
 --    },
 --    {
 --       name = 'CSS Selector - Class',
 --       selector = 'entity.other.attribute-name.class'
---       background = colors.pink.back,
+--       back = colors.pink.back,
 --       color = colors.pink.front,
 --    },
 --    {
 --       name = 'CSS Pseudo Class',
 --       selector = 'entity.other.attribute-name.pseudo-element, entity.other.attribute-name.pseudo-class'
---       background = colors.pink.back,
+--       back = colors.pink.back,
 --       color = colors.pink.front,
 --    },
 --    {
 --       name = 'CSS Property Name',
 --       selector = 'support.type.property-name'
---       background = colors.pink.back,
+--       back = colors.pink.back,
 --       color = colors.pink.front,
 --    },
 --    {
 --       name = 'CSS Property Value',
 --       selector = 'support.constant.property-value'
---       background = colors.pink.back,
+--       back = colors.pink.back,
 --       color = colors.pink.front,
 --    },
 --    {
 --       name = 'CSS Color',
 --       selector = 'constant.other.color.rgb-value'
---       background = colors.pink.back,
+--       back = colors.pink.back,
 --       color = colors.pink.front,
 --    },
 --    {
 --       name = 'CSS Unit',
 --       selector = 'keyword.other.unit.css'
---       background = colors.pink.back,
+--       back = colors.pink.back,
 --       color = colors.pink.front,
 --    },
 --    {
 --       name = 'CSS Font Name',
 --       selector = 'support.constant.font-name'
---       background = colors.pink.back,
+--       back = colors.pink.back,
 --       color = colors.pink.front,
 --    },
 --    {
 --       name = 'CSS Curly Brackets',
 --       selector = 'punctuation.section.property-list.css'
---       background = colors.pink.back,
+--       back = colors.pink.back,
 --       color = colors.pink.front,
 --    },
 --    {
 --       name = 'CSS Round Brackets',
 --       selector = 'punctuation.section.function.css'
---       background = colors.pink.back,
+--       back = colors.pink.back,
 --       color = colors.pink.front,
 --    },
 --    {
 --       name = 'CSS url() / rgba() / hsla',
 --       selector = 'support.function.misc.css'
---       background = colors.pink.back,
+--       back = colors.pink.back,
 --       color = colors.pink.front,
 --    },
 --    {
 --       name = 'CSS Parameter',
 --       selector = 'variable.parameter.misc.css',
---       background = colors.pink.back,
+--       back = colors.pink.back,
 --       color = colors.pink.front,
 --    }
 -- }

@@ -1,11 +1,11 @@
-  MADsublime
-==========
+MADdev
+======
 
 Install
 -------
 
 ```sh
-luarocks install https://raw.githubusercontent.com/LAEH/MADsublime/master/madsublime-scm-1.rockspec
+luarocks install https://raw.githubusercontent.com/LAEH/MADdev/master/maddev-scm-1.rockspec
 ```
 
 Load and run
@@ -13,5 +13,5 @@ Load and run
 
 ```lua
 th
-> ms = require 'madsublime'
+> ms = require 'maddev'
 ```
