@@ -151,11 +151,11 @@ scheme.language.lua = {
       background = colors.pink.back,
       color = colors.pink.front,
    },
-   {
-      name = 'LUA user strings',--strings, key strings, quotes'
-      selector= 'punctuation',
-      color='#444',
-   }
+   -- {
+   --    name = 'LUA user strings',--strings, key strings, quotes'
+   --    selector= 'punctuation',
+   --    color='#444',
+   -- }
 }
 
 -- scheme.language.css = {
