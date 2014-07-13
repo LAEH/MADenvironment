@@ -58,6 +58,12 @@ scheme.language.lua = {
       selector = 'string.quoted.single',
    },
    {
+      name = 'LUA user strings',
+      style = 'bold',
+      color = colors.green.front,
+      selector= 'constant.character, string',
+   },
+   {
       selector = 'string.quoted.double',
       name     = 'LUA string',
       color    ='#000000',
@@ -133,12 +139,6 @@ scheme.language.lua = {
       color = colors.green.front,
       back = colors.green.back,
       selector  = 'variable.parameter',
-   },
-   {
-      name = 'LUA user strings',
-      style = 'bold',
-      color = colors.pink.front,
-      selector= 'constant.character, string',
    },
    {
       name = 'LUA user strings',--strings, key strings, quotes'
