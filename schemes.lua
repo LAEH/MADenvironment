@@ -31,7 +31,7 @@ scheme = {
 }
 
 scheme.general = {
-   { selector = "background",        color =  base},
+   { selector = 'background',        color =  base},
    { selector = 'invisibles',        color = '#E0E0E0'},
    { selector = 'lineHighlight',     color = '#ffffff'},
    { selector = 'gutterForeground',  color = '#bbbee1'},
@@ -58,6 +58,13 @@ scheme.language.lua = {
       selector = 'string.quoted.single',
    },
    {
+      selector = 'string.quoted.double',
+      name     = 'LUA string',
+      color    ='#000000',
+      back     = base,
+      style    ='bold italic',
+   },
+   {
       name = 'LUA comment', -- this is a comment
       color = '#000',
       style='bold italic',
@@ -66,16 +73,8 @@ scheme.language.lua = {
    {
       name = 'LUA comments block', -- [[string]]
       color = colors.pink.front,
-      -- back = colors.pink.back,
       style='bold italic',
       selector = 'comment.block',
-   },
-   {
-      name = 'LUA string "', -- [[string]]
-      color ='#000000',
-      back =base,
-      style='bold italic',
-      selector = 'string.quoted.double',
    },
 
    --┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
