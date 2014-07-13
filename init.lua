@@ -1,115 +1,96 @@
 #!/usr/bin/env th
 
 require 'sys'
-local schemes = require 'schemes'
-local scheme = schemes.one
+local scheme = require './schemes'
+local col = require 'async.repl'.colorize
 
---▒▒▒▒▒▒▒▒▒▒▒▒
---▒▒▒▒▒▒▒▒▒▒▒▒
---▒▒▒▒▒▒▒▒▒▒▒▒
---▒▒▒▒▒▒▒▒▒▒▒▒
---▒▒▒▒▒▒▒▒▒▒▒▒
---▒▒▒▒▒▒▒▒▒▒▒▒
+local r = 1
 
-function generalSetting(keys)
-	local keys = keys or scheme.general
-	local strings = {}
-	for _,scope in ipairs(scheme.general) do
-		print('scope.name'..scope.name)
-		local string = [[
-			<key>]]..scope.name..[[</key>
-			<string>]]..scope.color..[[</string>
-		]]
+--┏━━━━━━━━━━━━━━┓
+--┃                          ┃
+--┃                   SCOPES ┃
+--┃                          ┃
+--┗━━━━━━━━━━━━━━┛
 
-		table.insert(strings,string)
-	end
-	return [[
-		<dict>
-			<key>settings</key>
-			<dict>]]..table.concat(strings)..[[</dict>
-		</dict>
-	]]
+function generalSetting()
+   local scopes = {}
+   for _,scope in ipairs(scheme.general) do
+      table.insert(scopes,
+         [[<key>]]..scope.selector..[[</key>
+         <string>]]..scope.color..[[</string>
+      ]])
+   end
+   return table.concat(scopes)
 end
-
-
---▒▒▒▒▒▒▒▒▒▒▒▒
---▒▒▒▒▒▒▒▒▒▒▒▒
---▒▒▒▒▒▒▒▒▒▒▒▒
---▒▒▒▒▒▒▒▒▒▒▒▒
---▒▒▒▒▒▒▒▒▒▒▒▒
---▒▒▒▒▒▒▒▒▒▒▒▒
 
 function languageSpecific()
-	local scopes = {}
-	for _,scope in ipairs(scheme.lua) do
-		local scopeString = {}
-		table.insert(scopeString, [[
-			<dict><key>scope</key>
-			<string>]]..scope.name..[[</string>
-			<key>settings</key>
-				<dict>
-					<key>foreground</key>
-					<string>]]..scope.color..[[</string>
-		]])
-		if scope.style then
-			table.insert(scopeString,[[<key>fontStyle</key>
-				<string>]]..scope.style..[[</string>]]
-			)
-		end
-		if scope.background then
-			table.insert(scopeString, [[<key>background</key>
-				<string>]]..scope.background..[[</string>]]
-			)
-		end
-		table.insert(scopeString, '</dict></dict>')
-		table.insert(scopes, table.concat(scopeString))
-	end
-	return table.concat(scopes)
+   local scopes = {}
+   for _,scope in ipairs(scheme.language.lua) do
+      local name, selector, color = scope.name, scope.selector,scope.color
+      local style, background = ' ', ' '
+      if scope.style then style = scope.style end
+      if scope.background then background = scope.background end
+      local scopeStrings = {}
+      table.insert(scopeStrings,
+         [[ <dict>
+               <key>name</key>
+               <string>]]..name..[[</string>
+               <key>scope</key>
+               <string>]]..selector..[[</string>
+               <key>settings</key>
+                  <dict>
+                     <key>foreground</key>
+                     <string>]]..color..[[</string>
+                     <key>fontStyle</key>
+                     <string>]]..style..[[</string>
+                     <key>background</key>
+                     <string>]]..background..[[</string>
+               </dict>
+            </dict>
+         ]]
+      )
+      table.insert(scopes, table.concat(scopeStrings))
+   end
+   return table.concat(scopes)
 end
 
-
---▒▒▒▒▒▒▒▒▒▒▒▒
---▒▒▒▒▒▒▒▒▒▒▒▒
---▒▒▒▒▒▒▒▒▒▒▒▒
---▒▒▒▒▒▒▒▒▒▒▒▒
---▒▒▒▒▒▒▒▒▒▒▒▒
---▒▒▒▒▒▒▒▒▒▒▒▒
-
 local xmlDoc = [[
-	<?xml version="1.0" encoding="UTF-8"?>
-	<!DOCTYPE plist
-	  	PUBLIC '-//Apple Computer//DTD PLIST 1.0//EN'
-	  	'http://www.apple.com/DTDs/PropertyList-1.0.dtd'>
-		<plist version="1.0">
-		<dict>
-			<key>name</key>
-			<string>MAD</string>
-			<key>settings</key>
-			<array>
-		]]..generalSetting()..languageSpecific()..[[
-			</array>
-			<key>uuid</key>
-			<string>13E579BF-40AB-42E2-9EAB-0AD3EDD88532</string>
-			<key>colorSpaceName</key>
-			<string>sRGB</string>
-			<key>semanticClass</key>
-			<string>theme.mad</string>
-			<key>author</key>
-			<string>LA</string>
-		</dict>
-	</plist>
+   <?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE plist
+      PUBLIC '-//Apple Computer//DTD PLIST 1.0//EN'
+      'http://www.apple.com/DTDs/PropertyList-1.0.dtd'>
+      <plist version="1.0">
+      <dict>
+         <key>name</key>
+         <string>MAD</string>
+         <key>settings</key>
+         <array>
+            <dict>
+               <key>settings</key>
+               <dict>
+                  ]]..generalSetting()
+                  ..[[
+               </dict>
+            </dict>
+         ]]
+            ..languageSpecific()
+            ..[[
+         </array>
+         <key>uuid</key>
+         <string>13E579BF-40AB-42E2-9EAB-0AD3EDD88532</string>
+         <key>colorSpaceName</key>
+         <string>sRGB</string>
+         <key>semanticClass</key>
+         <string>theme.mad</string>
+         <key>author</key>
+         <string>MADenvironment</string>
+      </dict>
+   </plist>
 ]]
-print(xmlDoc)
-
---████████████
---████████████
---████████████
---████████████
---████████████
---████████████
+print(col.blue(xmlDoc)
 
 local schemeDirectory = "/Users/LA/Library/Application Support/Sublime Text 3/Packages/MAD/"
-local schemeName = 'theMADtheme'..os.time()..'.tmTheme'
+local schemeName = 'MAD13.tmTheme'
 local schemeFile = schemeDirectory..'/'..schemeName
 local file = io.open(schemeFile,'w')
 file:write(xmlDoc)

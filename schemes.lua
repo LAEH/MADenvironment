@@ -1,166 +1,275 @@
 #!/usr/bin/env th
 
-local schemes = {}
-local language_Punctuation =  'punctuation.definition.string, punctuation.definition.variable, punctuation.definition.string, punctuation.definition.parameters, punctuation.definition.string, punctuation.definition.array'
+--┏━━━━━━━━━━━━━━┓
+--┃                          ┃
+--┃                   COLORS ┃
+--┃                          ┃
+--┗━━━━━━━━━━━━━━┛
 
-local base03 = '#002b36'
-local white = '#ffffff'
-local base02 = '#073642'
-local base01 = '#586e75'
-local base00 = '#657b83'
-local base0 = '#839496'
-local base1 = '#93a1a1'
-local base2 = '#eee8d5'
-local base3 = '#fdf6e3'
+local colors = {
+   violet       = { front='#6a71e5', back ='#f0f1fd'},
+   blue         = { front='#2f87fb', back ='#eaf3ff'},
+   cyan         = { front='#35b8e5', back ='#ebf8fd'},
+   lightblue    = { front='#65d0fc', back ='#f0fbff'},
+   green        = { front='#23cd4a', back ='#edfcf0'},
+   pink         = { front='#ff4966', back ='#ffedf0'},
+   red          = { front='#ff5533', back ='#ffeeeb'},
+   orange       = { front='#ffa503', back ='#fff6e6'},
+   yellow       = { front='#ffd201', back ='#fffbe6'},
+   grey         = { front='#9fa0a4', back ='#f6f6f6'},
+   black        = { front='#9fa0a4', back ='#f6f6f6'},
+}
 
-local yellow   = '#b58900'
-local orange   = '#cb4b16'
-local red      = '#dc322f'
-local pink     = '#d33682'
-local violet   = '#6c71c4'
-local blue     = '#268bd2'
-local cyan     = '#2aa198'
-local green    = '#859900'
+--┏━━━━━━━━━━━━━━┓
+--┃                          ┃
+--┃                   SCOPES ┃
+--┃                          ┃
+--┗━━━━━━━━━━━━━━┛
 
---●●●●●●●●●●●●●●●
---●             ●
---●             ●
---●             ●
---●             ●
---●             ●
---●             ●
---●●●●●●●●●●●●●●●
-schemes.one = {
-   general = {
-      {name='invisibles',                      color='#223439'},
-      {name='background',                      color='#354B50'},
-      {name='lineHighlight',                   color='#2a3f45'},
-      {name='gutterForeground',                color='#2a3f45'},
-      {name='foreground',                      color='#677E82'},
-      {name='selection',                       color='#597175'},
-      {name='selectionBorder',                 color='#2a3f45'},
-      {name='selectionForeground',             color='#2a3f45'},
-      {name='caret',                           color='#839496'},
-      {name='brackets',                        color='#839496'},
-      {name='guide',                           color='#2a3f45'},
-      {name='activeGuide',                     color='#3e757f'},
+scheme = {
+   general = {},
+   language = {},
+}
 
-      {name='inactiveSelection',               color='#839496'},
-      {name='inactiveSelectionForeground',     color='#839496'},
-      {name='findHighlight',                   color= pink},
-      {name='findHighlightForeground',         color= white},
+scheme.general = {
+   {
+      selector = 'invisibles',
+      color = '#E0E0E0'
    },
-   lua = {
-      { name= 'comment',                        color='#0F2329'},-- '--●●●●',
-      { name= 'constant',                       color='#994155'},-- '2,3,4',
-      { name= 'keyword.operator',               color='#000024'},-- '==, =, >',
-      { name= 'keyword.control',                color='#0F2329'},-- 'functionreturn,in, do',
-      { name= 'constant.language',              color='#815548'},-- 'true, false',
-      { name= 'support.function',               color='#ffffff'},-- 'io.open, table.insert',
-      { name= 'variable',                       color='#147B8A'},-- 'x, color1',
-      { name= 'entity.name.function',           color='#268bd2'},-- 'fun.grid(opt)',
-      { name= 'variable.parameter',             color='#045EAB'},-- 'function, local, in, do',
-      { name= 'string',                         color='#26a497'},--background='#2a3f45'},-- 'strings, key quotes',
-      { name= 'comment.block',                  color='#00AC6C'},
-      { name= 'punctuation',                    color='#0000000'},-- 'strings, key strings, quotes',
+   {
+      selector = 'background',
+      color = '#eeeeee'
    },
-   css = {
-         prettyName = 'CSS Selector - Tag',
-         selector = 'entity.name.tag.css'
-      },
-      {
-         prettyName = 'CSS Selector - Id',
-         selector = 'source.css entity.other.attribute-name.id'
-      },
-      {
-         prettyName = 'CSS Selector - Class',
-         selector = 'entity.other.attribute-name.class'
-      },
-      {
-         prettyName = 'CSS Pseudo Class',
-         selector = 'entity.other.attribute-name.pseudo-element, entity.other.attribute-name.pseudo-class'
-      },
-      {
-         prettyName = 'CSS Property Name',
-         selector = 'support.type.property-name'
-      },
-      {
-         prettyName = 'CSS Property Value',
-         selector = 'support.constant.property-value'
-      },
-      {
-         prettyName = 'CSS Color',
-         selector = 'constant.other.color.rgb-value'
-      },
-      {
-         prettyName = 'CSS Unit',
-         selector = 'keyword.other.unit.css'
-      },
-      {
-         prettyName = 'CSS Font Name',
-         selector = 'support.constant.font-name'
-      },
-      {
-         prettyName = 'CSS Curly Brackets',
-         selector = 'punctuation.section.property-list.css'
-      },
-      {
-         prettyName = 'CSS Round Brackets',
-         selector = 'punctuation.section.function.css'
-      },
-      {
-         prettyName = 'CSS url() / rgba() / hsla',
-         selector = 'support.function.misc.css'
-      },
-      {
-         prettyName = 'CSS Parameter',
-         selector = 'variable.parameter.misc.css',
-      }
+   {
+      selector = 'lineHighlight',
+      color = '#ffffff'
    },
+   {
+      selector = 'gutterForeground',
+      color = '#333333'
+   },
+   {
+      selector = 'foreground',
+      color = '#222222'
+   },
+   {
+      selector = 'selection',
+      color = '#fdbece'
+   },
+   {
+      selector = 'selectionBorder',
+      color = '#000000'
+   },
+   {
+      selector = 'caret',
+      color = '#000000'
+   },
+   {
+      selector = 'brackets',
+      color = '#839496'
+   },
+   {
+      selector = 'guide',
+      color = '#dddddd'
+   },
+   {
+      selector = 'activeGuide',
+      color = '#ffffff'
+   },
+   {
+      selector = 'inactiveSelection',
+      color = '#cffff9'
+   },
+   {
+      selector = 'findHighlight',
+      color = '#FFE792'
+   },
+}
 
-   markdown = {
-      {
-         prettyName = 'Markdown punctuation',
-         name = 'markup.list, text.html.markdown punctuation.definition, meta.separator.markdown',
-         color = '#CB4b16'
-      },
-      {
-         prettyName = 'Markdown heading',
-         name = 'markup.heading',
-         color = '#268BD2',
-      },
-      {
-         prettyName = 'Markdown text inside some block element',
-         name = 'markup.quote, meta.paragraph.list',
-         color = '#2AA198',
-      },
-      {
-         prettyName = 'Markdown em',
-         name = 'markup.italic',
-         style = 'italic',
-      },
-      {
-         prettyName = 'Markdown strong',
-         name = 'markup.bold',
-         style = 'bold',
-      },
-      {
-         prettyName = 'Markdown reference',
-         name = 'markup.underline.link.markdown, meta.link.inline punctuation.definition.metadata, meta.link.reference.markdowdefinition.constant, meta.link.reference.markdown constant.other.reference',
-         style = '#B58900',
-      },
-      {
-         prettyName = 'Markdown linebreak',
-         name = 'meta.paragraph.markdown meta.dummy.line-break',
-         color = '#6C71c4',
-      }
+scheme.language.lua = {
+   {
+      name = 'LUA comments', -- comment
+      selector = 'comment, comment punctuation',
+      color ='#000000',
+      style='bold italic'
+   },
+   {
+      name = 'LUA numbers',--'2,3,4'
+      selector = 'constant',
+      color = '#000000',
+      style = 'bold',
+      background = '#ffffff',
+   },
+   {
+      name = 'LUA arythmetic signs',--'==, =, >'
+      selector  = 'keyword.operator',
+      background = colors.blue.back,
+      color = colors.blue.front,
+   },
+   {
+      name = 'LUA controls keyword',--'function return,in, do'
+      selector = 'keyword.control',
+      background = colors.green.back,
+      color = colors.green.front,
+   },
+   {
+      name = 'LUA constants',--'true, false'
+      selector = 'constant.language',
+      background = colors.cyan.back,
+      color = colors.cyan.front,
+      style = 'bold',
+   },
+   {
+      name = 'LUA support functions',--'io.open, table.insert'
+      selector = 'support.function',
+      style = 'italic',
+      background = colors.blue.back,
+      color = colors.blue.front,
+
+   },
+   {
+      name = 'LUA user variables',--'x, color1'
+      selector = 'variable',
+      color='#147B8A',
+   },
+   {
+      name = 'LUA user function name',--'fun.grid(opt)'
+      selector = 'entity.name.function',
+      style = 'italic',
+      background = colors.violet.back,
+      color = colors.violet.front,
+   },
+   {
+      name = 'LUA user function arguments',--'opt'
+      selector  = 'variable.parameter',
+      background = colors.red.back,
+      color = colors.red.front,
+   },
+   {
+      name = 'LUA user strings',
+      selector= 'constant.character, string',
+      background = colors.pink.back,
+      color = colors.pink.front,
+   },
+   {
+      name = 'LUA user strings',--strings, key strings, quotes'
+      selector= 'punctuation',
+      color='#444',
    }
 }
 
-return schemes
+-- scheme.language.css = {
+--    {
+--       name = 'CSS Selector - Tag',
+--       selector = 'entity.name.tag.css',
+--       background = colors.pink.back,
+--       color = colors.pink.front,
+--       style = 'bold',
+--    },
+--    {
+--       name = 'CSS Selector - Id',
+--       selector = 'source.css entity.other.attribute-name.id'
+--       background = colors.pink.back,
+--       color = colors.pink.front,
+--       style = 'bold',
+--    },
+--    {
+--       name = 'CSS Selector - Class',
+--       selector = 'entity.other.attribute-name.class'
+--       background = colors.pink.back,
+--       color = colors.pink.front,
+--    },
+--    {
+--       name = 'CSS Pseudo Class',
+--       selector = 'entity.other.attribute-name.pseudo-element, entity.other.attribute-name.pseudo-class'
+--       background = colors.pink.back,
+--       color = colors.pink.front,
+--    },
+--    {
+--       name = 'CSS Property Name',
+--       selector = 'support.type.property-name'
+--       background = colors.pink.back,
+--       color = colors.pink.front,
+--    },
+--    {
+--       name = 'CSS Property Value',
+--       selector = 'support.constant.property-value'
+--       background = colors.pink.back,
+--       color = colors.pink.front,
+--    },
+--    {
+--       name = 'CSS Color',
+--       selector = 'constant.other.color.rgb-value'
+--       background = colors.pink.back,
+--       color = colors.pink.front,
+--    },
+--    {
+--       name = 'CSS Unit',
+--       selector = 'keyword.other.unit.css'
+--       background = colors.pink.back,
+--       color = colors.pink.front,
+--    },
+--    {
+--       name = 'CSS Font Name',
+--       selector = 'support.constant.font-name'
+--       background = colors.pink.back,
+--       color = colors.pink.front,
+--    },
+--    {
+--       name = 'CSS Curly Brackets',
+--       selector = 'punctuation.section.property-list.css'
+--       background = colors.pink.back,
+--       color = colors.pink.front,
+--    },
+--    {
+--       name = 'CSS Round Brackets',
+--       selector = 'punctuation.section.function.css'
+--       background = colors.pink.back,
+--       color = colors.pink.front,
+--    },
+--    {
+--       name = 'CSS url() / rgba() / hsla',
+--       selector = 'support.function.misc.css'
+--       background = colors.pink.back,
+--       color = colors.pink.front,
+--    },
+--    {
+--       name = 'CSS Parameter',
+--       selector = 'variable.parameter.misc.css',
+--       background = colors.pink.back,
+--       color = colors.pink.front,
+--    }
+-- }
 
+-- scheme.language.markdown = {
+--    {
+--       name = 'Markdown punctuation',
+--       selector = 'markup.list, text.html.markdown punctuation.definition, meta.separator.markdown',
+--    },
+--    {
+--       name = 'Markdown heading',
+--       selector = 'markup.heading',
+--    },
+--    {
+--       name = 'Markdown text inside some block element',
+--       selector = 'markup.quote, meta.paragraph.list',
+--    },
+--    {
+--       name = 'Markdown em',
+--       selector = 'markup.italic',
+--    },
+--    {
+--       name = 'Markdown strong',
+--       selector = 'markup.bold',
+--    },
+--    {
+--       name = 'Markdown reference',
+--       selector = 'markup.underline.link.markdown, meta.link.inline punctuation.definition.metadata, meta.link.reference.markdowdefinition.constant, meta.link.reference.markdown constant.other.reference',
+--    },
+--    {
+--       name = 'Markdown linebreak',
+--       selector = 'meta.paragraph.markdown meta.dummy.line-break',
+--    }
+-- }
 
--- More general scope-- {name = 'keyword',                   prettyName = 'Language Keywords',       exemple ='function, local, in, do',   color=o(090,7,090)},
--- {name = 'variable.language',         prettyName = 'lua.constants',           exemple ='function, local, in, do',               color=o(180,9,100)},
--- {name = 'storage',                   prettyName = 'lua.operator.bolean',     exemple ='true, false',               color=o(240,6,100)},
--- {name = 'support.variable',          prettyName = 'user.fucntion options',   exemple ='opt',               color=o(350,7,040)},
+return scheme
